@@ -40,11 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaLanzamiento.Day)
-                /
-                @Html.DisplayFor(modelItem => item.FechaLanzamiento.Month)
-                /
-                @Html.DisplayFor(modelItem => item.FechaLanzamiento.Year)
+                @Html.DisplayFor(modelItem => item.FechaLanzamiento.Day)/@Html.DisplayFor(modelItem => item.FechaLanzamiento.Month)/@Html.DisplayFor(modelItem => item.FechaLanzamiento.Year)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CantidadCanciones)
@@ -56,12 +52,12 @@
                 @item.Estilo.Descripcion
             </td>
             <td>
-                <image src="@item.UrlTapa" height="150px" ></image>
+                <image src="@item.UrlTapa" height="150">
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

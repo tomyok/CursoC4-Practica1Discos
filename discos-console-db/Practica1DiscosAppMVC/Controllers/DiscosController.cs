@@ -19,7 +19,9 @@ namespace Practica1DiscosAppMVC.Controllers
         // GET: DiscosController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            DiscoNegocio negocioDisco = new DiscoNegocio();
+            var disco = negocioDisco.listar().Find(d => d.Id == id);
+            return View(disco);
         }
 
         // GET: DiscosController/Create
@@ -45,6 +47,10 @@ namespace Practica1DiscosAppMVC.Controllers
             }
             catch
             {
+                TipoEdicionNegocio negocioTipoEdicion = new TipoEdicionNegocio();
+                ViewBag.TipoEdicion = new SelectList(negocioTipoEdicion.listar(), "Id", "Descripcion");
+                EstiloNegocio negocioEstilo = new EstiloNegocio();
+                ViewBag.Estilo = new SelectList(negocioEstilo.listar(), "Id", "Descripcion");
                 return View();
             }
         }
@@ -74,6 +80,10 @@ namespace Practica1DiscosAppMVC.Controllers
             }
             catch
             {
+                TipoEdicionNegocio negocioTipoEdicion = new TipoEdicionNegocio();
+                ViewBag.TipoEdicion = new SelectList(negocioTipoEdicion.listar(), "Id", "Descripcion");
+                EstiloNegocio negocioEstilo = new EstiloNegocio();
+                ViewBag.Estilo = new SelectList(negocioEstilo.listar(), "Id", "Descripcion");
                 return View();
             }
         }
@@ -81,7 +91,9 @@ namespace Practica1DiscosAppMVC.Controllers
         // GET: DiscosController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            DiscoNegocio negocioDisco = new DiscoNegocio();
+            var disco = negocioDisco.listar().Find(d => d.Id == id);
+            return View(disco);
         }
 
         // POST: DiscosController/Delete/5
@@ -91,6 +103,8 @@ namespace Practica1DiscosAppMVC.Controllers
         {
             try
             {
+                DiscoNegocio negocioDisco = new DiscoNegocio();
+                negocioDisco.eliminar(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
