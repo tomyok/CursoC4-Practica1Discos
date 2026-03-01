@@ -9,10 +9,17 @@ namespace Practica1DiscosAppMVC.Controllers
     public class DiscosController : Controller
     {
         // GET: DiscosController
-        public ActionResult Index()
+        public ActionResult Index(string filtro)
         {
+
             DiscoNegocio negocioDisco = new DiscoNegocio();
             var listaDiscos = negocioDisco.listar();
+
+            if (!string.IsNullOrEmpty(filtro))
+            {
+                listaDiscos = listaDiscos.FindAll(d => d.Titulo.ToUpper().Contains(filtro.ToUpper()));
+            }
+            ViewBag.filtro = filtro;
             return View(listaDiscos);
         }
 
